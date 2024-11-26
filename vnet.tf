@@ -19,15 +19,15 @@ resource "azurerm_public_ip" "example" {
   allocation_method        = "Dynamic"
 }
 
-resource "azurerm_network_interface" "example" {
-  name                = "example-nic"
+resource "azurerm_network_interface" "gitlab-nic" {
+  name                = "gitlab-nic"
   location            = azurerm_resource_group.gitlab-rg.location
   resource_group_name = azurerm_resource_group.gitlab-rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = azurerm_subnet.gitlab-subnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.example.id
+    public_ip_address_id          = azurerm_public_ip.gitlab-nic.id
   }
 }
