@@ -11,3 +11,7 @@ terraform {
 provider "azurerm" {
   features {}
 }
+resource "azurerm_resource_group" "gitlab" {
+  name     = "example"
+  location = "East US"
+}
