@@ -1,11 +1,19 @@
-# default provider
-provider "azurerm" {
-  subscription_id = "5e47e5a1-7dc4-4abb-87a2-f371200842ea"
-  features {}
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "=3.0.0"
+    }
+  }
 }
- 
+
+# Configure the Microsoft Azure Provider
 provider "azurerm" {
-  subscription_id = "24cd10ff-1e55-4c93-ac46-5bcce31cd7a4"
+
   features {}
-  alias = "production"
+
+}
+resource "azurerm_resource_group" "example" {
+  name     = "${var.prefix}-rg"
+  location = var.location
 }
